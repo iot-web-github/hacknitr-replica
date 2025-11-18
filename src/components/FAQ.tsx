@@ -45,7 +45,7 @@ export const FAQ = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section id="faqs" className="py-24 px-4 relative" ref={ref}>
+    <section id="faqs" className="py-12 sm:py-16 md:py-24 px-4 relative" ref={ref}>
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -64,8 +64,8 @@ export const FAQ = () => {
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className={`border-2 border-border bg-card px-6 hover:border-primary transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              className={`border-2 border-border bg-card px-4 sm:px-6 hover:border-primary transition-all duration-700 hover:shadow-lg hover:shadow-primary/10 ${
+                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-98'
               }`}
               style={{ transitionDelay: `${index * 0.05}s` }}
             >

@@ -130,6 +130,34 @@ All colors MUST be HSL.
     animation: drawLine 1.2s ease-out forwards;
   }
 
+  .animate-gradient {
+    animation: gradientShift 8s ease infinite;
+  }
+
+  .animate-gradient-reverse {
+    animation: gradientShift 8s ease infinite reverse;
+  }
+
+  .animate-text-reveal {
+    animation: textReveal 1s ease-out forwards;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.8s ease-out forwards;
+  }
+
+  .animate-stagger-in {
+    animation: staggerIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -147,6 +175,69 @@ All colors MUST be HSL.
     }
     to {
       stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes textReveal {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(20px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) translateY(20px);
+    }
+    50% {
+      transform: scale(1.05) translateY(-5px);
+    }
+    70% {
+      transform: scale(0.9) translateY(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes staggerIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
     }
   }
 

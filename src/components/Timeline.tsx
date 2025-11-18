@@ -49,7 +49,7 @@ export const Timeline = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 });
 
   return (
-    <section id="timeline" className="py-24 px-4 bg-muted/30 relative" ref={ref}>
+    <section id="timeline" className="py-12 sm:py-16 md:py-24 px-4 bg-muted/30 relative" ref={ref}>
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -84,7 +84,7 @@ export const Timeline = () => {
 
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"}`}>
-                  <div className="bg-card border-2 border-border p-6 hover-lift hover:border-primary transition-all group">
+                  <div className="bg-card border-2 border-border p-4 sm:p-6 hover-lift hover:border-primary transition-all group hover:shadow-lg hover:shadow-primary/20 hover:scale-105">
                     <div className="flex items-center gap-2 mb-2 text-primary justify-start md:justify-end">
                       <Clock className="w-4 h-4" />
                       <span className="font-semibold text-sm measurement-text">

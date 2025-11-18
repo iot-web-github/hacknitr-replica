@@ -29,7 +29,8 @@ export const Hero = () => {
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4">
       {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse" style={{ animationDuration: '8s' }} />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-gradient" />
+      <div className="absolute inset-0 bg-gradient-to-tl from-accent/5 via-transparent to-primary/5 animate-gradient-reverse" />
 
       {/* Measurement lines - Left with parallax */}
       <ParallaxBackground speed={0.3}>
@@ -68,7 +69,7 @@ export const Hero = () => {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto text-center">
+      <div className="relative z-10 max-w-7xl mx-auto text-center px-4 sm:px-6">
         {/* Top label */}
         <div className="fade-in-element mb-8 flex items-center justify-center gap-4">
           <div className="h-px w-16 bg-blueprint-line" />
@@ -79,9 +80,9 @@ export const Hero = () => {
         </div>
 
         {/* Hero text with sketch effect */}
-        <div className="relative mb-12">
-          <h1 className="sketch-text text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none mb-4 fade-in-element font-display" style={{ animationDelay: '0.2s' }}>
-            <span className="text-sketch-blue inline-block" style={{
+        <div className="relative mb-8 sm:mb-12">
+          <h1 className="sketch-text text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[10rem] leading-none mb-4 fade-in-element font-display animate-text-reveal" style={{ animationDelay: '0.2s' }}>
+            <span className="text-sketch-blue inline-block hover:scale-110 transition-transform duration-300" style={{
               textShadow: '3px 3px 0 hsl(var(--background)), 4px 4px 0 hsl(var(--blueprint-line))',
               transform: 'rotate(-1deg)'
             }}>
@@ -110,28 +111,28 @@ export const Hero = () => {
         </div>
 
         {/* Deadline notice */}
-        <div className="fade-in-element mb-12" style={{ animationDelay: '0.8s' }}>
-          <p className="text-lg md:text-xl font-semibold mb-2">
+        <div className="fade-in-element mb-8 sm:mb-12 px-4 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+          <p className="text-base sm:text-lg md:text-xl font-semibold mb-2">
             Registration <span className="text-primary">Deadline</span> Extended
           </p>
         </div>
 
         {/* CTA buttons */}
-        <div className="fade-in-element flex flex-col sm:flex-row items-center justify-center gap-4" style={{ animationDelay: '1s' }}>
-          <Button size="lg" className="hover-lift text-lg px-8 py-6 font-bold">
+        <div className="fade-in-element flex flex-col sm:flex-row items-center justify-center gap-4 px-4 animate-bounce-in" style={{ animationDelay: '1s' }}>
+          <Button size="lg" className="hover-lift text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 font-bold w-full sm:w-auto shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all duration-300">
             Apply Now
           </Button>
-          <Button size="lg" variant="outline" className="hover-lift text-lg px-8 py-6 font-bold border-2">
+          <Button size="lg" variant="outline" className="hover-lift text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 font-bold border-2 w-full sm:w-auto hover:bg-primary/10 transition-all duration-300">
             Join Community
           </Button>
         </div>
 
         {/* Enhanced scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in-element cursor-pointer group" style={{ animationDelay: '1.2s' }} onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 fade-in-element cursor-pointer group" style={{ animationDelay: '1.2s' }} onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
           <div className="flex flex-col items-center gap-2">
-            <span className="text-xs tracking-wider text-muted-foreground group-hover:text-primary transition-colors">SCROLL</span>
+            <span className="text-xs tracking-wider text-muted-foreground group-hover:text-primary transition-colors hidden sm:block">SCROLL</span>
             <div className="animate-bounce">
-              <ChevronDown className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+              <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
           </div>
         </div>
