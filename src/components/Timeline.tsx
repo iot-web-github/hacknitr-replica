@@ -1,4 +1,6 @@
 import { Calendar, Clock } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { ParallaxBackground } from "./ParallaxBackground";
 
 const events = [
   {
@@ -44,8 +46,10 @@ const events = [
 ];
 
 export const Timeline = () => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.1 });
+
   return (
-    <section id="timeline" className="py-24 px-4 bg-muted/30 relative">
+    <section id="timeline" className="py-24 px-4 bg-muted/30 relative" ref={ref}>
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -68,12 +72,13 @@ export const Timeline = () => {
           {/* Events */}
           <div className="space-y-12">
             {events.map((event, index) => (
-              <div
-                key={index}
-                className={`relative flex items-center gap-8 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
+              <ParallaxBackground speed={0.05 * (index + 1)} key={index}>
+                <div
+                  className={`relative flex items-center gap-8 transition-all duration-700 ${
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } ${isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 0 ? '-translate-x-10' : 'translate-x-10'}`}`}
+                  style={{ transitionDelay: `${index * 0.1}s` }}
+                >
                 {/* Timeline dot */}
                 <div className="hidden md:block absolute left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 border-4 border-background z-10" />
 
@@ -93,7 +98,8 @@ export const Timeline = () => {
 
                 {/* Mobile timeline indicator */}
                 <div className="md:hidden absolute left-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2" />
-              </div>
+                </div>
+              </ParallaxBackground>
             ))}
           </div>
         </div>

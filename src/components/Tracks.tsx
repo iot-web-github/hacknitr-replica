@@ -1,4 +1,5 @@
 import { Brain, Leaf, Shield, Smartphone } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const tracks = [
   {
@@ -28,8 +29,10 @@ const tracks = [
 ];
 
 export const Tracks = () => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
+
   return (
-    <section id="tracks" className="py-24 px-4 relative">
+    <section id="tracks" className="py-24 px-4 relative" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -49,7 +52,10 @@ export const Tracks = () => {
             return (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br bg-card border-2 border-border p-8 hover-lift hover:border-primary transition-all duration-300 overflow-hidden"
+                className={`group relative bg-gradient-to-br bg-card border-2 border-border p-8 hover-lift hover:border-primary transition-all duration-700 overflow-hidden ${
+                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+                style={{ transitionDelay: `${index * 0.15}s` }}
               >
                 {/* Background gradient effect */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${track.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
