@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "Is there a participation fee?",
-    answer: "No! TechHack is completely free to attend. We provide food, swag, and all the resources you need to build amazing projects.",
+    answer: "No! Hack Beyond 1.0 is completely free to attend. We provide food, swag, and all the resources you need to build amazing projects.",
   },
   {
     question: "What if I'm a beginner?",
@@ -84,8 +84,8 @@ export const FAQ = () => {
           <p className="text-lg mb-3">Still have questions?</p>
           <p className="text-muted-foreground mb-4">
             Reach out to us on Discord or email us at{" "}
-            <a href="mailto:hello@techhack.com" className="text-primary hover:underline font-semibold">
-              hello@techhack.com
+            <a href="mailto:hello@hackbeyond.com" className="text-primary hover:underline font-semibold">
+              hello@hackbeyond.com
             </a>
           </p>
         </div>

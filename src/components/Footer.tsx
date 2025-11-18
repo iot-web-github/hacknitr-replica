@@ -8,13 +8,13 @@ export const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-primary-foreground">
-                TH
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-primary-foreground">
+                HB
               </div>
-              <span className="font-bold text-xl">TechHack</span>
+              <span className="font-bold text-xl">Hack Beyond 1.0</span>
             </div>
             <p className="text-sm text-secondary-foreground/70 leading-relaxed">
-              Building the future, one hack at a time.
+              Innovation Beyond Limits
             </p>
           </div>
 
@@ -58,14 +58,14 @@ export const Footer = () => {
               </a>
             </div>
             <p className="text-sm text-secondary-foreground/70">
-              hello@techhack.com
+              hello@hackbeyond.com
             </p>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-secondary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-secondary-foreground/70">
-          <p>© 2025 TechHack. All rights reserved.</p>
+          <p>© 2025 Hack Beyond 1.0. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>

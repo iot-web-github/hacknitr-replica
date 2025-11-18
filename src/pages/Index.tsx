@@ -8,6 +8,8 @@ import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { FloatingParticles } from "@/components/FloatingParticles";
 import { AnimatedGrid } from "@/components/AnimatedGrid";
+import { Floating3DShapes } from "@/components/Floating3DShapes";
+import { WaveBackground } from "@/components/WaveBackground";
 
 const Index = () => {
   return (
@@ -15,6 +17,8 @@ const Index = () => {
       {/* Animated background elements */}
       <FloatingParticles />
       <AnimatedGrid />
+      <Floating3DShapes />
+      <WaveBackground />
       
       {/* Main content */}
       <div className="relative z-10">

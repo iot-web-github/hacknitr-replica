@@ -30,14 +30,14 @@ export const FloatingParticles = () => {
     window.addEventListener("resize", resizeCanvas);
 
     // Initialize particles
-    const particleCount = 50;
+    const particleCount = 80;
     particlesRef.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      size: Math.random() * 3 + 1,
-      speedX: (Math.random() - 0.5) * 0.5,
-      speedY: (Math.random() - 0.5) * 0.5,
-      opacity: Math.random() * 0.3 + 0.1,
+      size: Math.random() * 4 + 1,
+      speedX: (Math.random() - 0.5) * 0.8,
+      speedY: (Math.random() - 0.5) * 0.8,
+      opacity: Math.random() * 0.4 + 0.2,
     }));
 
     // Animation loop
@@ -61,7 +61,9 @@ export const FloatingParticles = () => {
         
         // Use theme-aware color
         const isDark = document.documentElement.classList.contains('dark');
-        const particleColor = isDark ? `rgba(150, 100, 255, ${particle.opacity})` : `rgba(100, 100, 100, ${particle.opacity})`;
+        const particleColor = isDark 
+          ? `rgba(155, 89, 255, ${particle.opacity})` 
+          : `rgba(155, 89, 255, ${particle.opacity * 0.7})`;
         ctx.fillStyle = particleColor;
         ctx.fill();
 
@@ -73,10 +75,12 @@ export const FloatingParticles = () => {
 
           if (distance < 150) {
             ctx.beginPath();
-            const connectionOpacity = 0.15 * (1 - distance / 150);
-            const connectionColor = isDark ? `rgba(150, 100, 255, ${connectionOpacity})` : `rgba(100, 100, 100, ${connectionOpacity})`;
+            const connectionOpacity = 0.2 * (1 - distance / 150);
+            const connectionColor = isDark 
+              ? `rgba(155, 89, 255, ${connectionOpacity})` 
+              : `rgba(155, 89, 255, ${connectionOpacity * 0.6})`;
             ctx.strokeStyle = connectionColor;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 1;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
             ctx.stroke();
@@ -101,7 +105,7 @@ export const FloatingParticles = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.4 }}
+      style={{ opacity: 0.5 }}
     />
   );
 };
