@@ -14,6 +14,8 @@ import { Interactive3DShapes } from "@/components/Interactive3DShapes";
 import { ParticleField3D } from "@/components/ParticleField3D";
 import { MeshGradient } from "@/components/MeshGradient";
 import { FloatingIslands } from "@/components/FloatingIslands";
+import { Floating3DModels } from "@/components/Floating3DModels";
+import { Models3DShowcase } from "@/components/Models3DShowcase";
 
 const Index = () => {
   return (
@@ -26,6 +28,7 @@ const Index = () => {
       <FloatingIslands />
       <Floating3DShapes />
       <Interactive3DShapes />
+      <Floating3DModels />
       
       {/* Particle effects - z-[2] */}
       <WaveBackground />
@@ -37,6 +40,7 @@ const Index = () => {
         <Navigation />
         <Hero />
         <About />
+        <Models3DShowcase />
         <Timeline />
         <Tracks />
         <Sponsors />

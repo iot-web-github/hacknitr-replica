@@ -1,8 +1,17 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ParallaxBackground } from "./ParallaxBackground";
 import { ChevronDown } from "lucide-react";
+import { Hero3DScene } from "./Hero3DScene";
+
 export const Hero = () => {
+  const [show3D, setShow3D] = useState(false);
+  
+  useEffect(() => {
+    // Delay 3D rendering slightly for better initial load
+    const timer = setTimeout(() => setShow3D(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
   const heroRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -21,6 +30,9 @@ export const Hero = () => {
     return () => observer.disconnect();
   }, []);
   return <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4">
+      {/* 3D Scene */}
+      {show3D && <Hero3DScene />}
+      
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-gradient" />
       <div className="absolute inset-0 bg-gradient-to-tl from-accent/5 via-transparent to-primary/5 animate-gradient-reverse" />
