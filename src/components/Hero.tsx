@@ -80,43 +80,32 @@ export const Hero = () => {
 
         {/* Hero text with sketch effect */}
         <div className="relative mb-12">
-          <h1 className="sketch-text text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] leading-none mb-4 fade-in-element" style={{ animationDelay: '0.2s' }}>
+          <h1 className="sketch-text text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none mb-4 fade-in-element font-display" style={{ animationDelay: '0.2s' }}>
             <span className="text-sketch-blue inline-block" style={{
               textShadow: '3px 3px 0 hsl(var(--background)), 4px 4px 0 hsl(var(--blueprint-line))',
               transform: 'rotate(-1deg)'
             }}>
-              Tech
+              HACK
             </span>
           </h1>
           
-          <h1 className="sketch-text text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] leading-none mb-4 fade-in-element" style={{ animationDelay: '0.4s' }}>
-            <span className="text-sketch-dark inline-block" style={{
+          <h1 className="sketch-text text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none mb-4 fade-in-element font-display" style={{ animationDelay: '0.4s' }}>
+            <span className="text-sketch-orange inline-block" style={{
               textShadow: '3px 3px 0 hsl(var(--background)), 4px 4px 0 hsl(var(--blueprint-line))',
               transform: 'rotate(1deg)'
             }}>
-              Hack
+              BEYOND
             </span>
           </h1>
           
           <div className="flex items-center justify-center gap-8 fade-in-element" style={{ animationDelay: '0.6s' }}>
-            <h1 className="sketch-text text-6xl sm:text-7xl md:text-8xl lg:text-9xl leading-none">
-              <span className="text-sketch-dark inline-block" style={{
-                textShadow: '2px 2px 0 hsl(var(--background)), 3px 3px 0 hsl(var(--blueprint-line))',
-                transform: 'rotate(-0.5deg)'
+            <h1 className="sketch-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-none font-display">
+              <span className="text-primary inline-block" style={{
+                textShadow: '2px 2px 0 hsl(var(--background)), 3px 3px 0 hsl(var(--accent))',
               }}>
-                2025
+                1.0
               </span>
             </h1>
-            
-            {/* Dimension marker */}
-            <div className="flex flex-col items-start text-xs measurement-text opacity-60">
-              <span>5cm</span>
-              <svg width="40" height="60" className="my-1">
-                <line x1="20" y1="0" x2="20" y2="60" className="blueprint-line" strokeDasharray="3,3" />
-                <line x1="15" y1="60" x2="25" y2="60" className="blueprint-line" />
-                <polygon points="20,5 18,12 22,12" className="blueprint-line" fill="hsl(var(--blueprint-line))" />
-              </svg>
-            </div>
           </div>
         </div>
 

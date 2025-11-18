@@ -58,7 +58,11 @@ export const FloatingParticles = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(100, 100, 100, ${particle.opacity})`;
+        
+        // Use theme-aware color
+        const isDark = document.documentElement.classList.contains('dark');
+        const particleColor = isDark ? `rgba(150, 100, 255, ${particle.opacity})` : `rgba(100, 100, 100, ${particle.opacity})`;
+        ctx.fillStyle = particleColor;
         ctx.fill();
 
         // Draw connections
@@ -69,7 +73,9 @@ export const FloatingParticles = () => {
 
           if (distance < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(100, 100, 100, ${0.1 * (1 - distance / 150)})`;
+            const connectionOpacity = 0.15 * (1 - distance / 150);
+            const connectionColor = isDark ? `rgba(150, 100, 255, ${connectionOpacity})` : `rgba(100, 100, 100, ${connectionOpacity})`;
+            ctx.strokeStyle = connectionColor;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
