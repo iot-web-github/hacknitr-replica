@@ -66,8 +66,15 @@ export const Timeline = () => {
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2 hidden md:block" />
+          {/* Vertical line with draw animation */}
+          <div 
+            className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary -translate-x-1/2 hidden md:block"
+            style={{
+              strokeDasharray: '1000',
+              strokeDashoffset: isVisible ? '0' : '1000',
+              animation: isVisible ? 'drawPath 2s ease-out forwards' : 'none'
+            }}
+          />
 
           {/* Events */}
           <div className="space-y-12">
@@ -79,25 +86,39 @@ export const Timeline = () => {
                   } ${isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 0 ? '-translate-x-10' : 'translate-x-10'}`}`}
                   style={{ transitionDelay: `${index * 0.1}s` }}
                 >
-                {/* Timeline dot */}
-                <div className="hidden md:block absolute left-1/2 w-4 h-4 bg-primary rounded-full -translate-x-1/2 border-4 border-background z-10" />
+                {/* Timeline dot with ripple animation */}
+                <div className="hidden md:block absolute left-1/2 w-6 h-6 bg-primary rounded-full -translate-x-1/2 border-4 border-background z-10 animate-ripple group-hover:scale-125 transition-transform" />
 
                 {/* Content */}
                 <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"}`}>
-                  <div className="bg-card border-2 border-border p-4 sm:p-6 hover-lift hover:border-primary transition-all group hover:shadow-lg hover:shadow-primary/20 hover:scale-105">
-                    <div className="flex items-center gap-2 mb-2 text-primary justify-start md:justify-end">
-                      <Clock className="w-4 h-4" />
+                  <div className="relative bg-card border-2 border-border p-4 sm:p-6 hover-lift hover:border-primary transition-all group hover:shadow-2xl hover:shadow-primary/30 hover:scale-105 overflow-hidden">
+                    {/* Animated gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Particle trail on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary animate-ping" />
+                      <div className="absolute top-4 right-6 w-1 h-1 rounded-full bg-accent animate-ping" style={{ animationDelay: '0.2s' }} />
+                      <div className="absolute top-6 right-4 w-1.5 h-1.5 rounded-full bg-primary animate-ping" style={{ animationDelay: '0.4s' }} />
+                    </div>
+                    
+                    <div className="relative z-10 flex items-center gap-2 mb-2 text-primary justify-start md:justify-end">
+                      <Clock className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                       <span className="font-semibold text-sm measurement-text">
                         {event.time}
                       </span>
                     </div>
-                    <h3 className="font-bold text-xl mb-2">{event.title}</h3>
-                    <p className="text-muted-foreground">{event.description}</p>
+                    <h3 className="relative z-10 font-bold text-xl mb-2 group-hover:text-primary transition-colors">{event.title}</h3>
+                    <p className="relative z-10 text-muted-foreground">{event.description}</p>
+
+                    {/* Corner accents */}
+                    <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors" />
+                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors" />
                   </div>
                 </div>
 
-                {/* Mobile timeline indicator */}
-                <div className="md:hidden absolute left-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2" />
+                {/* Mobile timeline indicator with pulse */}
+                <div className="md:hidden absolute left-0 w-4 h-4 bg-primary rounded-full -translate-x-1/2 animate-pulse" />
                 </div>
               </ParallaxBackground>
             ))}

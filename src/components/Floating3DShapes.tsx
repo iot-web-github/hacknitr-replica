@@ -44,22 +44,35 @@ export const Floating3DShapes = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
-      {shapes.map((shape) => (
-        <div
-          key={shape.id}
-          className="floating-shape absolute"
-          style={{
-            left: `${shape.x}%`,
-            top: `${shape.y}%`,
-            width: `${shape.size}px`,
-            height: `${shape.size}px`,
-            transform: `perspective(1000px) rotateX(${shape.rotation}deg) rotateY(${shape.rotation * 1.5}deg) translateZ(${shape.depth}px)`,
-            transition: 'transform 0.05s linear',
-          }}
-        >
-          <div className={`floating-shape-${shape.type}`} />
-        </div>
-      ))}
+      {shapes.map((shape) => {
+        const scale = 1 + Math.sin(Date.now() / 1000 + shape.id) * 0.1;
+        
+        return (
+          <div
+            key={shape.id}
+            className="floating-shape absolute"
+            style={{
+              left: `${shape.x}%`,
+              top: `${shape.y}%`,
+              width: `${shape.size}px`,
+              height: `${shape.size}px`,
+              transform: `
+                perspective(1500px) 
+                rotateX(${shape.rotation}deg) 
+                rotateY(${shape.rotation * 1.5}deg) 
+                rotateZ(${shape.rotation * 0.5}deg)
+                translateZ(${shape.depth}px)
+                scale(${scale})
+              `,
+              transition: 'transform 0.05s linear',
+              transformStyle: 'preserve-3d',
+              filter: `drop-shadow(0 10px 30px hsl(var(--primary) / 0.3))`,
+            }}
+          >
+            <div className={`floating-shape-${shape.type}`} />
+          </div>
+        );
+      })}
     </div>
   );
 };

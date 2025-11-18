@@ -10,17 +10,29 @@ import { FloatingParticles } from "@/components/FloatingParticles";
 import { AnimatedGrid } from "@/components/AnimatedGrid";
 import { Floating3DShapes } from "@/components/Floating3DShapes";
 import { WaveBackground } from "@/components/WaveBackground";
+import { Interactive3DShapes } from "@/components/Interactive3DShapes";
+import { ParticleField3D } from "@/components/ParticleField3D";
+import { MeshGradient } from "@/components/MeshGradient";
+import { FloatingIslands } from "@/components/FloatingIslands";
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
-      {/* Animated background elements */}
-      <FloatingParticles />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background layer - z-0 */}
       <AnimatedGrid />
-      <Floating3DShapes />
-      <WaveBackground />
       
-      {/* Main content */}
+      {/* Mid-layer 3D effects - z-[1] */}
+      <MeshGradient />
+      <FloatingIslands />
+      <Floating3DShapes />
+      <Interactive3DShapes />
+      
+      {/* Particle effects - z-[2] */}
+      <WaveBackground />
+      <ParticleField3D />
+      <FloatingParticles />
+      
+      {/* Main content - z-10 */}
       <div className="relative z-10">
         <Navigation />
         <Hero />
