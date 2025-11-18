@@ -13,7 +13,7 @@ export const About = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section id="about" className="py-24 px-4 relative" ref={ref}>
+    <section id="about" className="py-12 sm:py-16 md:py-24 px-4 relative" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -39,8 +39,8 @@ export const About = () => {
             return (
               <ParallaxBackground speed={0.1 * (index + 1)} key={index}>
                 <div
-                  className={`group relative bg-card border-2 border-border p-8 text-center hover-lift hover:border-primary transition-all duration-700 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  className={`group relative bg-card border-2 border-border p-4 sm:p-6 md:p-8 text-center hover-lift hover:border-primary transition-all duration-700 hover:shadow-lg hover:shadow-primary/20 ${
+                    isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
                   }`}
                   style={{ transitionDelay: `${index * 0.1}s` }}
                 >
@@ -50,9 +50,9 @@ export const About = () => {
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 
-                <Icon className="w-8 h-8 mx-auto mb-4 text-primary" />
-                <div className="text-3xl md:text-4xl font-bold mb-2 sketch-text">{stat.value}</div>
-                <div className="text-sm text-muted-foreground font-medium tracking-wider uppercase">
+                <Icon className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-3 sm:mb-4 text-primary group-hover:scale-110 transition-transform duration-300" />
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sketch-text group-hover:text-primary transition-colors">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground font-medium tracking-wider uppercase">
                   {stat.label}
                 </div>
                 </div>
@@ -79,7 +79,10 @@ export const About = () => {
           ].map((feature, index) => (
             <div
               key={index}
-              className="relative p-6 border-l-4 border-primary bg-card/50"
+              className={`relative p-4 sm:p-6 border-l-4 border-primary bg-card/50 hover:bg-card transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 ${
+                isVisible ? 'animate-slide-in-left' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <h3 className="font-bold text-xl mb-3">{feature.title}</h3>
               <p className="text-muted-foreground leading-relaxed">

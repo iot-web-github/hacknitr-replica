@@ -32,7 +32,7 @@ export const Tracks = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
 
   return (
-    <section id="tracks" className="py-24 px-4 relative" ref={ref}>
+    <section id="tracks" className="py-12 sm:py-16 md:py-24 px-4 relative" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -52,8 +52,8 @@ export const Tracks = () => {
             return (
               <div
                 key={index}
-                className={`group relative bg-gradient-to-br bg-card border-2 border-border p-8 hover-lift hover:border-primary transition-all duration-700 overflow-hidden ${
-                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                className={`group relative bg-gradient-to-br bg-card border-2 border-border p-4 sm:p-6 md:p-8 hover-lift hover:border-primary transition-all duration-700 overflow-hidden hover:shadow-2xl hover:shadow-primary/30 ${
+                  isVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-95 rotate-3'
                 }`}
                 style={{ transitionDelay: `${index * 0.15}s` }}
               >
@@ -62,8 +62,8 @@ export const Tracks = () => {
                 
                 {/* Content */}
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-7 h-7 text-primary" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                    <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="font-bold text-2xl mb-3">{track.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">

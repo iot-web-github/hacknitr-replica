@@ -15,7 +15,7 @@ const sponsorTiers = [
 
 export const Sponsors = () => {
   return (
-    <section id="sponsors" className="py-24 px-4 bg-muted/30 relative">
+    <section id="sponsors" className="py-12 sm:py-16 md:py-24 px-4 bg-muted/30 relative">
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -44,13 +44,13 @@ export const Sponsors = () => {
                 {tier.sponsors.map((sponsor, index) => (
                   <div
                     key={index}
-                    className="bg-card border-2 border-border p-8 flex items-center justify-center hover-lift hover:border-primary transition-all group"
+                    className="bg-card border-2 border-border p-4 sm:p-6 md:p-8 flex items-center justify-center hover-lift hover:border-primary transition-all group hover:shadow-lg hover:shadow-primary/20 hover:scale-105"
                   >
                     <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-2xl font-bold text-primary">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-xl sm:text-2xl font-bold text-primary group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         {sponsor.charAt(0)}
                       </div>
-                      <p className="font-bold text-sm">{sponsor}</p>
+                      <p className="font-bold text-xs sm:text-sm">{sponsor}</p>
                     </div>
                   </div>
                 ))}

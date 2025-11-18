@@ -39,7 +39,7 @@ export const Navigation = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-primary-foreground transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-primary/50">
               HB
             </div>
-            <span className="font-bold text-xl hidden sm:inline transition-colors group-hover:text-primary">Hack Beyond 1.0</span>
+            <span className="font-bold text-lg sm:text-xl transition-colors group-hover:text-primary hidden sm:inline">Hack Beyond 1.0</span>
           </a>
 
           {/* Desktop navigation */}
