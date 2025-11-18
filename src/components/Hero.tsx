@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { ParallaxBackground } from "./ParallaxBackground";
+import { ChevronDown } from "lucide-react";
 
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -26,31 +28,29 @@ export const Hero = () => {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 px-4">
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(hsl(var(--blueprint-line)) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(var(--blueprint-line)) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }} />
-      </div>
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 animate-pulse" style={{ animationDuration: '8s' }} />
 
-      {/* Measurement lines - Left */}
-      <svg className="absolute left-8 top-1/4 w-32 h-64 opacity-40 hidden lg:block" viewBox="0 0 100 200">
+      {/* Measurement lines - Left with parallax */}
+      <ParallaxBackground speed={0.3}>
+        <svg className="absolute left-8 top-1/4 w-32 h-64 opacity-40 hidden lg:block" viewBox="0 0 100 200">
         <line x1="50" y1="0" x2="50" y2="200" className="blueprint-line stroke-dasharray-[5,5]" strokeDasharray="5,5" />
         <line x1="40" y1="0" x2="60" y2="0" className="blueprint-line" />
         <line x1="40" y1="200" x2="60" y2="200" className="blueprint-line" />
         <polygon points="50,10 45,20 55,20" className="blueprint-line" fill="hsl(var(--blueprint-line))" />
         <polygon points="50,190 45,180 55,180" className="blueprint-line" fill="hsl(var(--blueprint-line))" />
-      </svg>
+        </svg>
+      </ParallaxBackground>
 
-      {/* Top measurement line */}
-      <svg className="absolute top-32 left-1/4 w-64 h-16 opacity-40 hidden md:block" viewBox="0 0 200 50">
+      {/* Top measurement line with parallax */}
+      <ParallaxBackground speed={0.2}>
+        <svg className="absolute top-32 left-1/4 w-64 h-16 opacity-40 hidden md:block" viewBox="0 0 200 50">
         <line x1="0" y1="25" x2="200" y2="25" className="blueprint-line stroke-dasharray-[5,5]" strokeDasharray="5,5" />
         <line x1="0" y1="15" x2="0" y2="35" className="blueprint-line" />
         <line x1="200" y1="15" x2="200" y2="35" className="blueprint-line" />
         <text x="100" y="15" textAnchor="middle" className="fill-blueprint-text measurement-text">24cm</text>
-      </svg>
+        </svg>
+      </ParallaxBackground>
 
       {/* Vertical text - Right side */}
       <div className="absolute right-8 top-1/3 hidden lg:flex flex-col gap-4 text-sm font-bold tracking-[0.3em] opacity-60">
@@ -137,13 +137,13 @@ export const Hero = () => {
           </Button>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in-element" style={{ animationDelay: '1.2s' }}>
-          <div className="flex flex-col items-center gap-2 animate-bounce">
-            <span className="text-xs tracking-wider text-muted-foreground">SCROLL</span>
-            <svg width="20" height="30" viewBox="0 0 20 30">
-              <path d="M10 0 L10 25 M5 20 L10 25 L15 20" stroke="currentColor" strokeWidth="2" fill="none" className="text-muted-foreground" />
-            </svg>
+        {/* Enhanced scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in-element cursor-pointer group" style={{ animationDelay: '1.2s' }} onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs tracking-wider text-muted-foreground group-hover:text-primary transition-colors">SCROLL</span>
+            <div className="animate-bounce">
+              <ChevronDown className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+            </div>
           </div>
         </div>
       </div>

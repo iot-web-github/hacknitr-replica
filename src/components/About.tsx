@@ -1,4 +1,6 @@
 import { Code2, Users, Trophy, Zap } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { ParallaxBackground } from "./ParallaxBackground";
 
 const stats = [
   { icon: Users, value: "1000+", label: "Participants" },
@@ -8,11 +10,13 @@ const stats = [
 ];
 
 export const About = () => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
+
   return (
-    <section id="about" className="py-24 px-4 relative">
+    <section id="about" className="py-24 px-4 relative" ref={ref}>
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-block mb-4">
             <span className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-semibold">
               About The Event
@@ -33,11 +37,13 @@ export const About = () => {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div
-                key={index}
-                className="group relative bg-card border-2 border-border p-8 text-center hover-lift hover:border-primary transition-all duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <ParallaxBackground speed={0.1 * (index + 1)} key={index}>
+                <div
+                  className={`group relative bg-card border-2 border-border p-8 text-center hover-lift hover:border-primary transition-all duration-700 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 0.1}s` }}
+                >
                 {/* Technical corner marks */}
                 <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -49,7 +55,8 @@ export const About = () => {
                 <div className="text-sm text-muted-foreground font-medium tracking-wider uppercase">
                   {stat.label}
                 </div>
-              </div>
+                </div>
+              </ParallaxBackground>
             );
           })}
         </div>

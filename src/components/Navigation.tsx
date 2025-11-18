@@ -25,18 +25,20 @@ export const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50" 
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-primary-foreground transition-transform group-hover:scale-110">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-primary-foreground transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 group-hover:shadow-lg">
               TH
             </div>
-            <span className="font-bold text-xl hidden sm:inline">TechHack</span>
+            <span className="font-bold text-xl hidden sm:inline transition-colors group-hover:text-primary">TechHack</span>
           </a>
 
           {/* Desktop navigation */}
