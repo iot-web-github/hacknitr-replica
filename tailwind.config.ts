@@ -53,8 +53,13 @@ export default {
         },
         sketch: {
           blue: "hsl(var(--sketch-blue))",
-          dark: "hsl(var(--sketch-dark))",
+          orange: "hsl(var(--sketch-orange))",
         },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
+        display: ['Orbitron', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
