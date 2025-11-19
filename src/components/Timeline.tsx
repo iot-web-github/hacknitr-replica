@@ -1,6 +1,7 @@
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, Droplet } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ParallaxBackground } from "./ParallaxBackground";
+import { useEffect, useRef, useState } from "react";
 
 const events = [
   {
@@ -45,36 +46,79 @@ const events = [
   },
 ];
 
+const FluidTimeline = ({ isVisible }: { isVisible: boolean }) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (svgRef.current) {
+        const rect = svgRef.current.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+        setScrollProgress(progress);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const pathLength = 1000;
+
+  return (
+    <svg ref={svgRef} className="absolute left-1/2 top-0 -translate-x-1/2 h-full w-32 hidden md:block pointer-events-none" style={{ zIndex: 1 }}>
+      <defs>
+        <linearGradient id="fluidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.2">
+            <animate attributeName="offset" values="0;0.3;0" dur="3s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="50%" stopColor="hsl(var(--accent))" stopOpacity="0.8">
+            <animate attributeName="offset" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.2">
+            <animate attributeName="offset" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <radialGradient id="dropletGradient">
+          <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+        </radialGradient>
+      </defs>
+      <path d={`M 16 0 Q 20 50, 16 100 T 16 200 T 16 300 T 16 400 T 16 500 T 16 600 T 16 700 T 16 800 T 16 900 T 16 ${pathLength}`} stroke="url(#fluidGradient)" strokeWidth="4" fill="none" strokeLinecap="round" filter="url(#glow)" style={{ strokeDasharray: pathLength, strokeDashoffset: isVisible ? pathLength * (1 - scrollProgress) : pathLength, transition: 'stroke-dashoffset 0.1s ease-out' }} />
+      {isVisible && [0, 0.25, 0.5, 0.75].map((offset, i) => (
+        <circle key={i} r="3" fill="url(#dropletGradient)" filter="url(#glow)" className="animate-droplet-fall" style={{ animationDelay: `${i * 0.7}s`, animationDuration: '2.8s' }}>
+          <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${i * 0.7}s`} path={`M 16 ${offset * pathLength} Q 20 ${50 + offset * pathLength}, 16 ${100 + offset * pathLength} T 16 ${pathLength}`} />
+        </circle>
+      ))}
+    </svg>
+  );
+};
+
 export const Timeline = () => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.1 });
 
   return (
-    <section id="timeline" className="py-12 sm:py-16 md:py-24 px-4 bg-muted/30 relative" ref={ref}>
-      <div className="max-w-4xl mx-auto">
-        {/* Section header */}
+    <section id="timeline" className="py-12 sm:py-16 md:py-24 px-4 bg-muted/30 relative overflow-hidden" ref={ref}>
+      <div className="max-w-4xl mx-auto relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
-            <Calendar className="w-5 h-5 text-primary" />
-            <span className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-semibold">
-              Event Schedule
-            </span>
+            <Calendar className="w-5 h-5 text-primary animate-pulse-slow" />
+            <span className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-semibold">Event Schedule</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold sketch-text">
-            Timeline
-          </h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold sketch-text mb-4">Timeline</h2>
+          <div className="flex items-center justify-center gap-2">
+            <Droplet className="w-4 h-4 animate-bounce text-accent" />
+            <p className="text-sm text-muted-foreground">Flow through the journey</p>
+            <Droplet className="w-4 h-4 animate-bounce text-accent" style={{ animationDelay: '0.2s' }} />
+          </div>
         </div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line with draw animation */}
-          <div 
-            className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary -translate-x-1/2 hidden md:block"
-            style={{
-              strokeDasharray: '1000',
-              strokeDashoffset: isVisible ? '0' : '1000',
-              animation: isVisible ? 'drawPath 2s ease-out forwards' : 'none'
-            }}
-          />
+          <FluidTimeline isVisible={isVisible} />
 
           {/* Events */}
           <div className="space-y-12">
